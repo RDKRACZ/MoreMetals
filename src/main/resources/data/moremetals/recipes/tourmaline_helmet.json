@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "M M",
+    "   "
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:tourmaline_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:tourmaline_helmet",
+    "count": 1
+  }
+}

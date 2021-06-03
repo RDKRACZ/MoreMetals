@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:chrysolite_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:chrysolite_chestplate",
+    "count": 1
+  }
+}

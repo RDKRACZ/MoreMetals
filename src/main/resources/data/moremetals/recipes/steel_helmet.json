@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "M M",
+    "   "
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:steel_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:steel_helmet",
+    "count": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "moremetals:sapphire_ore"
+  },
+  "result": "moremetals:sapphire_ingot",
+  "experience": 17.0,
+  "cookingtime": 175
+}

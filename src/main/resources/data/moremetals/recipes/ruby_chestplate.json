@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:ruby_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:ruby_chestplate",
+    "count": 1
+  }
+}

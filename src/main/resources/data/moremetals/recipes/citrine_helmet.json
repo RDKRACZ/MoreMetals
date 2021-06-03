@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "M M",
+    "   "
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:citrine_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:citrine_helmet",
+    "count": 1
+  }
+}

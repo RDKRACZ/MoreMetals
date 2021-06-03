@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "moremetals:aquamarine_ore"
+  },
+  "result": "moremetals:aquamarine_ingot",
+  "experience": 22.0,
+  "cookingtime": 225
+}

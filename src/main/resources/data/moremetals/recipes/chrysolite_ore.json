@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "moremetals:chrysolite_ore"
+  },
+  "result": "moremetals:chrysolite_ingot",
+  "experience": 20.0,
+  "cookingtime": 200
+}

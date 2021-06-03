@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "moremetals:amethyst_ore"
+  },
+  "result": "moremetals:amethyst_ingot",
+  "experience": 25.0,
+  "cookingtime": 250
+}

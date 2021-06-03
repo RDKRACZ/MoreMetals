@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:aquamarine_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:aquamarine_boots",
+    "count": 1
+  }
+}

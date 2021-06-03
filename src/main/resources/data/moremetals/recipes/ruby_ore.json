@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "moremetals:ruby_ore"
+  },
+  "result": "moremetals:ruby_ingot",
+  "experience": 16.0,
+  "cookingtime": 160
+}

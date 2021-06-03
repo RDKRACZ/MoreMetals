@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "moremetals:tourmaline_ore"
+  },
+  "result": "moremetals:tourmaline_ingot",
+  "experience": 28.0,
+  "cookingtime": 280
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M M",
+    "MMM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:steel_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:steel_chestplate",
+    "count": 1
+  }
+}

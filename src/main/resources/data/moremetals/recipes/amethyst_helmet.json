@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "M M",
+    "   "
+  ],
+  "key": {
+    "M": {
+      "item": "moremetals:amethyst_ingot"
+    }
+  },
+  "result": {
+    "item": "moremetals:amethyst_helmet",
+    "count": 1
+  }
+}
