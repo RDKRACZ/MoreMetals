@@ -12,11 +12,13 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
 
 /**
  * A base class for mod registries
@@ -42,9 +44,9 @@ public abstract class CommonRegistry {
                         oreBlock.getDefaultState(),
                         veinSize
                 ))
-                .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(0,0,maxY)))
+                .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(UniformHeightProvider.create(YOffset.aboveBottom(0), YOffset.fixed(64))))
                 .spreadHorizontally()
-                .repeat(repeats);
+                .repeat(repeats));
     }
 
     /**
@@ -76,7 +78,7 @@ public abstract class CommonRegistry {
      */
     protected void registerOreFeature(String name, ConfiguredFeature<?, ?> feature) {
         // Creating a registry key
-        RegistryKey<ConfiguredFeature<?, ?>> key = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(Info.MOD_ID, name));
+        RegistryKey<ConfiguredFeature<?, ?>> key = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(Info.MOD_ID, name));
         // Registering the configured feature
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key.getValue(), feature);
         // Applying the biome modification

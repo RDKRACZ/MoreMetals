@@ -101,7 +101,7 @@ public class MetalEvents {
         if (!settings.isStabilized()) {
             if (settings.getRadiation().randomize() && entity.isLiving()) {
                 // Applying poison effect
-                ((LivingEntity) entity).applyStatusEffect(new StatusEffectInstance(StatusEffects.POISON, settings.getRadiationDuration()));
+                ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, settings.getRadiationDuration()));
             }
         }
     }
