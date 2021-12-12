@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "moremetals",
-  "version": "1.16.4-1.0.0",
+  "version": "1.3.0",
   "name": "MoreMetals",
   "description": "A mod that adds more metals to the game with their special properties, tools and armor",
   "authors": [
@@ -21,8 +21,8 @@
   },
   "mixins": [],
   "depends": {
-    "fabricloader": ">=0.11.6",
+    "fabricloader": ">=0.12.11",
     "fabric": "*",
-    "minecraft": ">=1.17.1"
+    "minecraft": ">=1.18.1"
   }
 }

@@ -13,12 +13,10 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.heightprovider.UniformHeightProvider;
+import net.minecraft.world.gen.decorator.CountPlacementModifier;
+import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
+import net.minecraft.world.gen.decorator.SquarePlacementModifier;
+import net.minecraft.world.gen.feature.*;
 
 /**
  * A base class for mod registries
@@ -29,24 +27,19 @@ public abstract class CommonRegistry {
      */
     public abstract void register();
 
-    /**
-     * Generates an ore feature
-     * @param oreBlock Ore block instance
-     * @param veinSize Max vein size
-     * @param maxY Max spawn Y
-     * @param repeats Repeats per chunk
-     * @return Generated feature
-     */
-    protected static ConfiguredFeature<?, ?> createOreFeature(Block oreBlock, int veinSize, int maxY, int repeats) {
-        return Feature.ORE
-                .configure(new OreFeatureConfig(
-                        OreFeatureConfig.Rules.BASE_STONE_OVERWORLD,
-                        oreBlock.getDefaultState(),
-                        veinSize
-                ))
-                .decorate(Decorator.RANGE.configure(new RangeDecoratorConfig(UniformHeightProvider.create(YOffset.aboveBottom(0), YOffset.fixed(64))))
-                .spreadHorizontally()
-                .repeat(repeats));
+    protected static ConfiguredFeature<?, ?> createConfiguredFeature(Block oreBlock, int veinSize) {
+        return Feature.ORE.configure(new OreFeatureConfig(
+                OreConfiguredFeatures.STONE_ORE_REPLACEABLES,
+                oreBlock.getDefaultState(),
+                veinSize));
+    }
+
+    protected static PlacedFeature createPlacedFeature(ConfiguredFeature<?, ?> configuredFeature, int maxY, int repeats) {
+        return configuredFeature.withPlacement(
+                CountPlacementModifier.of(repeats),
+                SquarePlacementModifier.of(),
+                HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(maxY))
+        );
     }
 
     /**
@@ -71,17 +64,11 @@ public abstract class CommonRegistry {
         Registry.register(Registry.ITEM, new Identifier(Info.MOD_ID, name), new BlockItem(block, new Item.Settings().group(group)));
     }
 
-    /**
-     * Registers an ore feature
-     * @param feature Ore feature
-     * @param name Registry name (ID)
-     */
-    protected void registerOreFeature(String name, ConfiguredFeature<?, ?> feature) {
-        // Creating a registry key
-        RegistryKey<ConfiguredFeature<?, ?>> key = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(Info.MOD_ID, name));
-        // Registering the configured feature
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, key.getValue(), feature);
-        // Applying the biome modification
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, key);
+    protected void registerOreFeature(String name, ConfiguredFeature<?, ?> configuredFeature, PlacedFeature placedFeature) {
+        Identifier id = new Identifier(Info.MOD_ID, name);
+
+        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id, configuredFeature);
+        Registry.register(BuiltinRegistries.PLACED_FEATURE, id, placedFeature);
+        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
     }
 }
