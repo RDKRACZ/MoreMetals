@@ -10,13 +10,16 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.decorator.CountPlacementModifier;
-import net.minecraft.world.gen.decorator.HeightRangePlacementModifier;
-import net.minecraft.world.gen.decorator.SquarePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
+
+import java.util.Arrays;
 
 /**
  * A base class for mod registries
@@ -28,17 +31,17 @@ public abstract class CommonRegistry {
     public abstract void register();
 
     protected static ConfiguredFeature<?, ?> createConfiguredFeature(Block oreBlock, int veinSize) {
-        return Feature.ORE.configure(new OreFeatureConfig(
+        return new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(
                 OreConfiguredFeatures.STONE_ORE_REPLACEABLES,
                 oreBlock.getDefaultState(),
                 veinSize));
     }
 
     protected static PlacedFeature createPlacedFeature(ConfiguredFeature<?, ?> configuredFeature, int maxY, int repeats) {
-        return configuredFeature.withPlacement(
+        return new PlacedFeature(RegistryEntry.of(configuredFeature), Arrays.asList(
                 CountPlacementModifier.of(repeats),
                 SquarePlacementModifier.of(),
-                HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(maxY))
+                HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(maxY)))
         );
     }
 
